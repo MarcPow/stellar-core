@@ -39,12 +39,18 @@ RUN apt-get update \
 # NOTE: newer version of the compilers are not
 #    provided by stock distributions
 #    and are provided by the /test toolchain
-RUN sudo apt-get -y install software-properties-common \
+RUN sudo apt-get update \
+    && sudo apt-get -y install software-properties-common \
     && sudo add-apt-repository ppa:ubuntu-toolchain-r/test \
-    sudo apt-get update
+    && sudo apt-get update
 
 # Install common compilation tools
 RUN sudo apt-get -y install git build-essential pkg-config autoconf automake libtool bison flex libpq-dev parallel
+
+# Update compiler tools
+RUN sudo apt-get -y install gcc-6 g++-6 cpp-6 libstdc++6 \
+    && export CC=gcc6 \
+    && export CXX=g++6 \
 
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=
