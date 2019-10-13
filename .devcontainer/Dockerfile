@@ -50,7 +50,10 @@ RUN sudo apt-get -y install git build-essential pkg-config autoconf automake lib
 # Update compiler tools
 RUN sudo apt-get -y install gcc-6 g++-6 cpp-6 libstdc++6 \
     && export CC=gcc6 \
-    && export CXX=g++6 \
+    && export CXX=g++6 
+
+# Install pandoc (to build manpages)
+RUN sudo apt-get -y install pandoc
 
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=
