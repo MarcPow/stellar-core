@@ -55,5 +55,16 @@ ENV CXX=g++-6
 # Install pandoc (to build manpages)
 RUN sudo apt-get -y install pandoc
 
+# Install postgresql to enable tests under make check
+RUN sudo apt-get -y install postgresql
+
+# Set up locale
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
+    && locale-gen
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=

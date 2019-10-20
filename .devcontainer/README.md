@@ -37,5 +37,14 @@
 - Type `./autogen.sh`.
 - Type `./configure`   
 - Type `make` or `make -j<N>` (where `<N>` is the number of parallel builds, a number less than the number of CPU cores available, e.g. `make -j3`)
+- Type `su vscode` to switch to a non-root user for test execution purposes.   (Tests that rely on postgresql will not run under root)
 - Type `make check` to run tests.
 - Type `make install` to install.
+
+## Known issues
+* Test failures on Windows:
+  * bucket/test/BucketManagerTests.cpp:1310 will fail 
+    * Failed to fsync directory stellar-core-test-52c416044e9cfd23/bucket :Invalid argument (FileSystemException.h:21)
+    * Root cause - The host machine's git repository directory is shared with the docker container via CIFS, but CIFS does not implement directory fsync operations:
+      * [CIFS operations without fsync](https://github.com/torvalds/linux/blob/69c902f597c4bec92013a526268620fb6255c24a/fs/cifs/cifsfs.c#L1168-L1176)
+      * [NFS operations with fsync](https://github.com/torvalds/linux/blob/c971aa3693e1b68086e62645c54a087616217b6f/fs/nfs/dir.c#L63)
