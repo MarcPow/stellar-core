@@ -12,7 +12,7 @@
   * If you are installing Docker on Windows, please make sure your settings have enabled Linux, rather than Windows containers.
 * Special note for Windows users:
   * This feature mounts your git repository into the container so that you can use it from Linux.
-  * If you are using Docker Desktop + Hyper-V (as opposed to new WSL2 features built into Windows version 10.0.18462.x and forward not covered here):
+  * If you are using Docker Desktop + Hyper-V (as opposed to new WSL2 features built into Windows version 10.0.18945.x and forward not covered here):
     * You will need to 'share your drive' with Docker. To do this in the most secure way, we recommend that you:
       * Create a dedicated local-only user for this purpose (as an admin): `net user DockerMount DockerMountUserPassword /add`
       * Grant read/write permission to that user to your git repository directory
